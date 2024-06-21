@@ -1,23 +1,23 @@
 # Menggunakan image Node.js versi 18
 FROM node:18-alpine
 
-# Menetapkan direktori kerja di dalam container
+# Set working directory
 WORKDIR /app
 
-# Menyalin package.json dan package-lock.json
+# Copy package.json dan package-lock.json
 COPY package*.json ./
 
-# Menginstal dependensi
+# Install dependencies
 RUN npm install
 
-# Menyalin seluruh kode aplikasi ke dalam container
+# Copy semua file ke working directory
 COPY . .
 
-# Menjalankan build aplikasi Next.js
+# Build aplikasi Next.js
 RUN npm run build
 
-# Mengekspos port yang digunakan oleh aplikasi
+# Expose port 3000
 EXPOSE 3000
 
-# Menentukan perintah untuk menjalankan aplikasi
+# Perintah untuk menjalankan aplikasi Next.js
 CMD ["npm", "start"]
